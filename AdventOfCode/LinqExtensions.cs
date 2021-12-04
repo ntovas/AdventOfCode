@@ -17,6 +17,16 @@ namespace AdventOfCode
         {
             return func(source, source.First());
         }
+        
+        public static TResult Transform<T, TResult>(this IEnumerable<T> source, Func<IEnumerable<T>, TResult> func)
+        {
+            return func(source);
+        }
+        
+        public static TResult Transform<T, R, TResult>(this ValueTuple<IEnumerable<T>, IEnumerable<R>> source, Func<IEnumerable<T>, IEnumerable<R>, TResult> func)
+        {
+            return func(source.Item1, source.Item2);
+        }
 
         public static IEnumerable<int> AsRange(this int count)
         {
