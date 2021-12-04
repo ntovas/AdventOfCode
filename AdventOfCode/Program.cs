@@ -1,4 +1,7 @@
-﻿if (args.Length == 0)
+﻿using System;
+using System.Linq;
+
+if (args.Length == 0)
 {
     Solver.SolveLast(new SolverConfiguration { ClearConsole = false });
 }

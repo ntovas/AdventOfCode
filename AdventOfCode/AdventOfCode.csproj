@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AoCHelper" Version="1.0.2" />
+    <PackageReference Include="FSharp.Core" Version="6.0.1" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -16,6 +17,12 @@
 
   <ItemGroup>
     <None Update="Inputs\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Inputs\02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Inputs\03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

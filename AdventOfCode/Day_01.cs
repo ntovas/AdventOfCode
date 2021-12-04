@@ -1,15 +1,35 @@
-﻿namespace AdventOfCode;
+﻿using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class Day_01 : BaseDay
+namespace AdventOfCode
 {
-    private readonly string _input;
-
-    public Day_01()
+    public sealed class Day01 : BaseDay
     {
-        _input = File.ReadAllText(InputFilePath);
+        private readonly string _input;
+
+        public Day01()
+        {
+            _input = File.ReadAllText(InputFilePath);
+        }
+
+        public override ValueTask<string> Solve_1() =>
+            new(_input.Split('\n')
+                .Select(int.Parse)
+                .Windowed(2)
+                .Count(c => c[0] < c[1])
+                .ToString());
+
+
+        public override ValueTask<string> Solve_2() => 
+            new(_input.Split('\n')
+                .Select(int.Parse)
+                .Windowed(3)
+                .Select(c=> c.Sum())
+                .Windowed(2)
+                .Count(c => c[0] < c[1])
+                .ToString());
     }
-
-    public override ValueTask<string> Solve_1() => new($"Solution to {ClassPrefix} {CalculateIndex()}, part 1");
-
-    public override ValueTask<string> Solve_2() => new($"Solution to {ClassPrefix} {CalculateIndex()}, part 2");
 }
+
+
