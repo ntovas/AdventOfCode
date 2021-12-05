@@ -21,7 +21,7 @@ namespace AdventOfCode
                     .Select(int.Parse).ToArray())
                 .Where(c => c[0] == c[2] || c[1] == c[3])
                 .Select(c =>
-                    Enumerable.Range(0, Math.Max(Math.Abs(c[0] - c[2]), Math.Abs(c[1] - c[3])) + 1)
+                    (1+ Math.Max(Math.Abs(c[0] - c[2]), Math.Abs(c[1] - c[3]))).AsRange()
                         .Select(f =>
                         (
                             c[0] > c[2] ? c[0] - f : c[0] < c[2] ? c[0] + f : c[0],
@@ -39,7 +39,7 @@ namespace AdventOfCode
                 .Select(m => m.Split(",").Where(c => !string.IsNullOrWhiteSpace(c))
                     .Select(int.Parse).ToArray())
                 .Select(c =>
-                    Enumerable.Range(0, Math.Max(Math.Abs(c[0] - c[2]), Math.Abs(c[1] - c[3])) + 1)
+                    (1+ Math.Max(Math.Abs(c[0] - c[2]), Math.Abs(c[1] - c[3]))).AsRange()
                         .Select(f =>
                         (
                             c[0] > c[2] ? c[0] - f : c[0] < c[2] ? c[0] + f : c[0],
