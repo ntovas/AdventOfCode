@@ -14,9 +14,8 @@ namespace AdventOfCode
             _input = File.ReadAllText(InputFilePath);
         }
 
-        public override ValueTask<string> Solve_1()
-        {
-          return  new(_input.Split('\n')
+        public override ValueTask<string> Solve_1() =>
+            new(_input.Split('\n')
                 .Select(c => (c.Split(" ")[0][0], int.Parse(c.Split(" ")[1])))
                 .Aggregate(new[] { 0, 0 }, (position, move) =>
                         move.Item1 == 'f' ? new[] { position[0] + move.Item2, position[1] } :
@@ -25,7 +24,6 @@ namespace AdventOfCode
                         throw new ArgumentOutOfRangeException(),
                     f => f[0] * f[1])
                 .ToString());
-        }
 
         public override ValueTask<string> Solve_2()=>
             new(_input.Split('\n')
