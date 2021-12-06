@@ -32,5 +32,11 @@ namespace AdventOfCode
         {
             return Enumerable.Range(0, count);
         }
+
+        public static T[] RunAndReturn<T>(this T[] arr, Action<T[]> action)
+        {
+            action.Invoke(arr);
+            return arr;
+        }
     }
 }
