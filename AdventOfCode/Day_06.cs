@@ -20,14 +20,14 @@ namespace AdventOfCode
                 .Replace("\r", "")
                 .Split(',')
                 .Select(int.Parse)
-                .Transform(list =>
+                .Pipe(list =>
                     list.Aggregate(new long[9], (longs, i) =>
-                        longs.RunAndReturn(arr => arr[i]++)
+                        longs.Apply(arr => arr[i]++)
                     )
-                ).Transform(arr =>
+                ).Pipe(arr =>
                     80.AsRange()
                         .Aggregate(arr.ToArray(), (longs, i) =>
-                            longs.RunAndReturn(longs1 => longs1[(i + 7) % 9] += longs1[i % 9])
+                            longs.Apply(longs1 => longs1[(i + 7) % 9] += longs1[i % 9])
                         )
                 ).Sum().ToString());
 
@@ -36,14 +36,14 @@ namespace AdventOfCode
                 .Replace("\r", "")
                 .Split(',')
                 .Select(int.Parse)
-                .Transform(list =>
+                .Pipe(list =>
                     list.Aggregate(new long[9], (longs, i) =>
-                        longs.RunAndReturn(arr => arr[i]++)
+                        longs.Apply(arr => arr[i]++)
                     )
-                ).Transform(arr =>
+                ).Pipe(arr =>
                     256.AsRange()
                         .Aggregate(arr.ToArray(), (longs, i) =>
-                            longs.RunAndReturn(longs1 => longs1[(i + 7) % 9] += longs1[i % 9])
+                            longs.Apply(longs1 => longs1[(i + 7) % 9] += longs1[i % 9])
                         )
                 ).Sum().ToString());
     }

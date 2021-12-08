@@ -16,7 +16,7 @@ namespace AdventOfCode
 
         public override ValueTask<string> Solve_1() =>
             new(_input.Replace("\r", "").Split("\n\n")
-                .TransformWithFirst((source, first) =>
+                .PipeWithFirst((source, first) =>
                     (first.Split(",").Select(int.Parse),
                         source.Skip(1).Select(c
                             => c.Split('\n')
@@ -25,7 +25,7 @@ namespace AdventOfCode
                                         .Where(f => !string.IsNullOrWhiteSpace(f)).Select(int.Parse).ToArray())
                                 .ToArray()).ToArray()
                     ))
-                .Transform((numbers, boards)
+                .Pipe((numbers, boards)
                     => numbers.Aggregate((-1, boards), (tuple, i) =>
                         tuple.boards.Any(board
                             => board.Length.AsRange().Any(y => board[y].All(c => c == -1))
@@ -43,7 +43,7 @@ namespace AdventOfCode
 
         public override ValueTask<string> Solve_2() =>
             new(_input.Replace("\r", "").Split("\n\n")
-                .TransformWithFirst((source, first) =>
+                .PipeWithFirst((source, first) =>
                     (first.Split(",").Select(int.Parse),
                         source.Skip(1).Select(c
                             => c.Split('\n')
@@ -52,7 +52,7 @@ namespace AdventOfCode
                                         .Where(f => !string.IsNullOrWhiteSpace(f)).Select(int.Parse).ToArray())
                                 .ToArray()).ToArray()
                     ))
-                .Transform((numbers, boards)
+                .Pipe((numbers, boards)
                     => numbers.Aggregate((-1, boards), (tuple, i) =>
                         tuple.boards.Any(board
                             => board.Length.AsRange().Any(y => board[y].All(c => c == -1))
@@ -62,7 +62,7 @@ namespace AdventOfCode
                                     .Select(y =>
                                         board.Length.AsRange()
                                             .Select(x => board[y][x] = board[y][x] == i ? -1 : board[y][x])
-                                            .ToArray()).ToArray()).Transform(bs => bs.Count() <= 1
+                                            .ToArray()).ToArray()).Pipe(bs => bs.Count() <= 1
                                     ? bs
                                     : bs.Where(board =>
                                         !board.Length.AsRange().Any(y => board[y].All(c => c == -1))

@@ -20,7 +20,7 @@ namespace AdventOfCode
                .Replace("\r", "")
                .Split(',')
                .Select(int.Parse)
-               .Transform(source =>
+               .Pipe(source =>
                    source.Max().AsRange()
                        .Select(c => source.Sum(f => Math.Abs(f - c)))
                        .Min()
@@ -33,7 +33,7 @@ namespace AdventOfCode
                 .Replace("\r", "")
                 .Split(',')
                 .Select(int.Parse)
-                .Transform(source =>
+                .Pipe(source =>
                     source.Max().AsRange()
                         .Select(c => 
                             source.Select(f => Math.Abs(f - c))

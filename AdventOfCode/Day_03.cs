@@ -17,7 +17,7 @@ namespace AdventOfCode
 
         public override ValueTask<string> Solve_1() =>
             new(_input.Split('\n')
-                .TransformWithFirst(
+                .PipeWithFirst(
                     (source, first) => Convert.ToInt32(string.Join("", (first.Length - 1)
                                            .AsRange()
                                            .Select(c => source.Select(i => i[c]))
@@ -37,13 +37,13 @@ namespace AdventOfCode
 
         public override ValueTask<string> Solve_2() =>
             new(_input.Replace("\r", "").Split('\n')
-                .TransformWithFirst(
+                .PipeWithFirst(
                     (source, first) => 
                                         Convert.ToInt32(string.Join("", (first.Length)
                                            .AsRange()
                                            .Aggregate(((char)0, source), (tuple, i) => tuple.source.Count() > 1
                                                ? (tuple.Item1 = tuple.source.Select(c => c[i])
-                                                       .Transform(s =>
+                                                       .Pipe(s =>
                                                            s.Count(ch => ch == '1') >= s.Count(ch => ch == '0')
                                                                ? '1'
                                                                : '0'),
@@ -55,7 +55,7 @@ namespace AdventOfCode
                                             .AsRange()
                                             .Aggregate(((char)0, source), (tuple, i) => tuple.source.Count() > 1
                                                 ? (tuple.Item1 = tuple.source.Select(c => c[i])
-                                                        .Transform(s =>
+                                                        .Pipe(s =>
                                                             s.Count(ch => ch == '1') >= s.Count(ch => ch == '0')
                                                                 ? '0'
                                                                 : '1'),
